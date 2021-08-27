@@ -10,7 +10,7 @@ public class FCFrame extends JFrame {
 
 	public FCFrame() {
 
-		this.setTitle("FLASHCARDS - v.0.0.1");
+		this.setTitle("FLASHCARDS - v.1");
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setContentPane(fcPanel = new FCPanel());

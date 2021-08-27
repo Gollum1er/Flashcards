@@ -76,6 +76,7 @@ public class FCPanelNew extends JPanel {
 		namet.setForeground(Color.GRAY);
 		namet.setBackground(Color.DARK_GRAY);
 		namet.setFont(new Font("Arial", Font.BOLD, 20));
+		namet.setCaretColor(Color.GRAY);
 		confirm.setForeground(Color.GRAY);
 		confirm.setBackground(Color.WHITE);
 		confirm.setFont(new Font("Arial", Font.BOLD, 20));
@@ -85,9 +86,11 @@ public class FCPanelNew extends JPanel {
 		face1t.setForeground(Color.GRAY);
 		face1t.setBackground(Color.DARK_GRAY);
 		face1t.setFont(new Font("Arial", Font.BOLD, 20));
+		face1t.setCaretColor(Color.GRAY);
 		face2t.setForeground(Color.GRAY);
 		face2t.setBackground(Color.DARK_GRAY);
 		face2t.setFont(new Font("Arial", Font.BOLD, 20));
+		face2t.setCaretColor(Color.GRAY);
 		table.setForeground(Color.WHITE);
 		table.setBackground(Color.DARK_GRAY);
 		table.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -141,7 +144,7 @@ public class FCPanelNew extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String file = "C:\\Flashcards\\Saves\\" + namet.getText() + ".xls";
+				String file = "C:\\Flashcards\\Saves\\" + namet.getText() + ".csv";
 				export(table, new File(file));
 
 			}
@@ -198,14 +201,13 @@ public class FCPanelNew extends JPanel {
 			error.setBackground(Color.DARK_GRAY);
 			error.setLayout(new GridLayout());
 			error.setSize(400, 200);
-			JLabel err = new JLabel("Veuillez entrer un mot dans le champs : Nom de la collection.",
-					SwingConstants.CENTER);
+			JLabel err = new JLabel("Veuillez entrer un mot dans le champs : Nom de la collection.", SwingConstants.CENTER);
 			err.setForeground(Color.GRAY);
 			error.add(err);
 			error.setVisible(true);
 		} else {
 
-			Object[] row = { lines, nameStr, face1Str, face2Str, 0, 0 };
+			Object[] row = { lines, nameStr, face1Str, face2Str, 0, lines };
 
 			model.addRow(row);
 
@@ -219,14 +221,12 @@ public class FCPanelNew extends JPanel {
 		try {
 			TableModel m = table.getModel();
 			FileWriter fw = new FileWriter(file);
-			for (int i = 0; i < m.getColumnCount(); i++) {
-				fw.write(m.getColumnName(i) + "\t");
-			}
-			fw.write("\n");
 			for (int i = 0; i < m.getRowCount(); i++) {
-				for (int j = 0; j < m.getColumnCount(); j++) {
-					fw.write(m.getValueAt(i, j).toString() + "\t");
+				for (int j = 0; j < m.getColumnCount() - 1; j++) {
+					fw.write(m.getValueAt(i, j).toString() + ",");
 				}
+				
+				fw.write(m.getValueAt(i, 5).toString());
 				fw.write("\n");
 			}
 			fw.close();

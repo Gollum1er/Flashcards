@@ -3,11 +3,12 @@ package fr.gollum1er.flashcards;
 import java.io.File;
 
 public class FCDirectory {
-
+	
+	public static String SAVES = new String("C:\\Flashcards\\Saves");
+	
 	public FCDirectory() {
-
-		new File("C:\\Flashcards\\Saves").mkdirs();
-
+		new File(SAVES).mkdirs();
 	}
+
 
 }
