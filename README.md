@@ -1,5 +1,5 @@
-# FLASHCARDS
-FLASHCARDS est une application simple pour apprendre avec des flashcards. 
-En cours de développement.
+# FLASHCARDS v.1
+FLASHCARDS est une application simple pour apprendre avec des flashcards (cartes mentales). 
+En cours de développement, (version 1).
 Langage Java.
-Aucune dépendence et aucune API (pour l'instant).
+
